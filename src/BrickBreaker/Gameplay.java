@@ -15,7 +15,9 @@ import java.awt.event.KeyEvent;
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private boolean play = false;
     private int score = 0;
-    private int totalbricks = 21;
+    private int row=4;
+    private int col=8;
+    private int totalbricks = row*col;
     private Timer timer;
     private int delay = 8;
     private int playerX = 310;
@@ -31,7 +33,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
 
-        map = new MapGenerator(3, 7);
+
+        map = new MapGenerator(row,col); // Inserting bricks
 
         timer = new Timer(delay, this);
         timer.start();
@@ -172,13 +175,13 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (!play) {
                 score = 0;
-                totalbricks = 21;
+                totalbricks = row*col;
                 playerX = 310;
                 ballposX = 120;
                 ballposY = 350;
                 balldirX = -1;
                 balldirY = -2;
-                map = new MapGenerator(3, 7);
+                map = new MapGenerator(row, col);
 
                 repaint();
             }
