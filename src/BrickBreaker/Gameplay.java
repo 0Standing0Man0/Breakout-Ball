@@ -15,9 +15,11 @@ import java.awt.event.KeyEvent;
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private boolean play = false;
     private int score = 0;
-    private int row=4;
+
+    private int row=4; // assigning brick data
     private int col=8;
     private int totalbricks = row*col;
+
     private Timer timer;
     private int delay = 8;
     private int playerX = 310;
