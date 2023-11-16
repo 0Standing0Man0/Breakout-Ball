@@ -15,9 +15,10 @@ import java.awt.event.KeyEvent;
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private boolean play = false;
     private int score = 0;
+    private int level=1;
 
-    private int row=4; // assigning brick data
-    private int col=8;
+    private int row=3; // assigning brick data
+    private int col=7;
     private int totalbricks = row*col;
 
     private Timer timer;
@@ -64,7 +65,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         g.setFont(new Font("serif", Font.ROMAN_BASELINE, 25));
         g.drawString("Your Score: " + score, 490, 30);
 
-        if(totalbricks==0){
+        if(totalbricks==0 && level==3){
             g.setColor(Color.green);
             g.setFont(new Font("serif", Font.BOLD, 30));
             g.drawString("YOU WON", 279, 330);
@@ -73,7 +74,17 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             g.setFont(new Font("serif", Font.ROMAN_BASELINE, 25));
             g.drawString("Press ENTER to restart", 235, 450);
         }
-            
+
+        if(totalbricks==0 && level<3){
+            g.setColor(Color.green);
+            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.drawString("Level cleared", 265, 330);
+            g.setFont(new Font("serif", Font.ITALIC, 30));
+            g.drawString("Your Score: " + score, 258, 390);
+            g.setFont(new Font("serif", Font.ROMAN_BASELINE, 25));
+            g.drawString("Press ENTER to go to next level", 180, 450);
+        }
+
         if(ballposY>570){
             play=false;
             balldirX=0;
@@ -176,27 +187,46 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             if (!play) {
-                score = 0;
-                totalbricks = row*col;
-                playerX = 310;
-                ballposX = 120;
-                ballposY = 350;
-                balldirX = -1;
-                balldirY = -2;
-                map = new MapGenerator(row, col);
+                if(totalbricks==0 && level<3){
+                    level++;
+                    row++;
+                    col++;
+                    totalbricks = row*col;
+                    playerX = 310;
+                    ballposX = 120;
+                    ballposY = 350;
+                    balldirX = -1;
+                    balldirY = -2;
+                    map = new MapGenerator(row, col);
 
-                repaint();
+                    repaint();
+                }
+                else {
+                    score = 0;
+                    level=1;
+                    row=3;
+                    col=7;
+                    totalbricks = row*col;
+                    playerX = 310;
+                    ballposX = 120;
+                    ballposY = 350;
+                    balldirX = -1;
+                    balldirY = -2;
+                    map = new MapGenerator(row, col);
+
+                    repaint();
+                }
             }
         }
     }
 
     public void moveRight() {
         play = true;
-        playerX += 20;
+        playerX += 40;
     }
 
     public void moveLeft() {
         play = true;
-        playerX -= 20;
+        playerX -= 40;
     }
 }
