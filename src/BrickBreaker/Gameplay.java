@@ -198,7 +198,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                     else 
                     row ++;
                     
-                    balldirY =-4-level; // increasing ball speed
+                    balldirY = -4-level; // increasing ball speed
+                    balldirX = -2;
                     totalbricks = row*col;
                     
                     map = new MapGenerator(row, col);
@@ -212,7 +213,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                     row=4;
                     col=7;
                     totalbricks = row*col;
-                    
+
                     playerX = 310;
                     ballposX = 350;
                     ballposY = 520;
