@@ -17,17 +17,17 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
     private int score = 0;
     private int level=1;
 
-    private int row=3; // assigning brick data
+    private int row=4; // assigning brick data
     private int col=7;
     private int totalbricks = row*col;
 
     private Timer timer;
     private int delay = 8;
     private int playerX = 310;
-    private int ballposX = 120;
-    private int ballposY = 350;
-    private int balldirX = -1;
-    private int balldirY = -2;
+    private int ballposX = 350;
+    private int ballposY = 520;
+    private int balldirX = -2;
+    private int balldirY = -4;
 
     private MapGenerator map;
 
@@ -189,14 +189,18 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             if (!play) {
                 if(totalbricks==0 && level<3){
                     level++;
-                    row++;
-                    col++;
-                    totalbricks = row*col;
+
                     playerX = 310;
-                    ballposX = 120;
-                    ballposY = 350;
-                    balldirX = -1;
-                    balldirY = -2;
+                    ballposX = 350;
+                    ballposY = 520;
+                    if (level%2==0)
+                    col++; // adding bricks
+                    else 
+                    row ++;
+                    
+                    balldirY =-4-level; // increasing ball speed
+                    totalbricks = row*col;
+                    
                     map = new MapGenerator(row, col);
 
                     repaint();
@@ -204,14 +208,16 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
                 else {
                     score = 0;
                     level=1;
-                    row=3;
+
+                    row=4;
                     col=7;
                     totalbricks = row*col;
+                    
                     playerX = 310;
-                    ballposX = 120;
-                    ballposY = 350;
-                    balldirX = -1;
-                    balldirY = -2;
+                    ballposX = 350;
+                    ballposY = 520;
+                    balldirX = -2;
+                    balldirY = -4;
                     map = new MapGenerator(row, col);
 
                     repaint();
