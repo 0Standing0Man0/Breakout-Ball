@@ -65,6 +65,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         g.setFont(new Font("serif", Font.ROMAN_BASELINE, 25));
         g.drawString("Your Score: " + score, 490, 30);
 
+        g.setColor(Color.white);
+        g.setFont(new Font("serif", Font.ROMAN_BASELINE, 25));
+        g.drawString("Level: " + level, 70, 30);
+
         if(totalbricks==0 && level==3){
             g.setColor(Color.green);
             g.setFont(new Font("serif", Font.BOLD, 30));
