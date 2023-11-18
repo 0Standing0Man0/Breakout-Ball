@@ -2,7 +2,7 @@
  
  Java Project
  
- Click on the Application named BreakoutBall
+ Click on the Application named Breakout Ball
  
  or
  
